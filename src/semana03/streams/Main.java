@@ -1,7 +1,11 @@
 package semana03.streams;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,10 +24,24 @@ public class Main {
         );
 
         //Mostrar Lista em ordem alfabetica com estoque > 0.
-        List<String> Nomes = produtos.stream().filter(produto -> produto.estoque() > 0).map(produto -> produto.nome() ).sorted().toList();
-        IO.println(Nomes);
+        List<String> nomes = produtos.stream().filter(produto -> produto.estoque() > 0).map(produto -> produto.nome() ).sorted().toList();
+        IO.println(nomes);
 
+        //Media
+        double media = produtos.stream().mapToDouble(value -> value.preco()).average().getAsDouble();
+        IO.println(media);
 
+        //Separar por categorias
+        Map<String, List<Produto>> nomeCat = produtos.stream().collect(Collectors.groupingBy(produto -> produto.categoria()));
+        IO.println(nomeCat);
+
+        //Quantidade de produtos por categorias
+        Map<String, Long> qtdPorCat = produtos.stream().collect(Collectors.groupingBy(produto -> produto.categoria(), Collectors.counting()));
+        IO.println(qtdPorCat);
+
+        //Produto mais caro de cada categoria //Lambda
+        Map<String, Optional<Produto>> produtoCaroCat = produtos.stream().collect(Collectors.groupingBy(Produto::categoria, Collectors.maxBy(Comparator.comparingDouble(Produto::preco))));
+        IO.println(produtoCaroCat);
 
     }
 }
