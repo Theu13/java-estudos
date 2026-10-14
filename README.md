@@ -14,7 +14,7 @@ Praticar e fixar os fundamentos de Java e orientação a objetos, estudando prin
 | Herança e polimorfismo | `extends`, sobrescrita, `super` |
 | Abstração | Classes abstratas, interfaces e enums |
 | Exceptions | `try/catch/finally`, exceções customizadas |
-| Collections e Generics | `List`, `Set`, `Map`, tipos genéricos |
+| Collections e Generics | `ArrayList`, `List`, `Set`, `Map`, tipos genéricos |
 | Lambdas, Streams e Optional | `stream()`, operações intermediárias e terminais, `Collectors`, `Optional` |
 
 ## Estrutura do projeto
